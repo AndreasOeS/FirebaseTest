@@ -92,7 +92,19 @@ public class MainActivity extends AppCompatActivity {
         testUser.getUploadedRecipies().add(testReci.getID());
         userRef.setValue(testUser);
 
+        for (int i = 0; i < ingredientList.size(); i++){
+            DatabaseReference ingreRef = myRef.child("ingredients").child(ingredientList.get(i));
 
+            ArrayList<String> items = new ArrayList<>();
+
+            ingreRef.child("inRecipies").addValue(testReci.getID());
+
+            items.add(testReci.getID());
+
+
+            ingreRef.child("inRecipies").setValue(items);
+
+        }
 
 
                     // Read from the database
@@ -135,19 +147,7 @@ public class MainActivity extends AppCompatActivity {
                     });
 
 
-        for (int i = 0; i < ingredientList.size(); i++){
-            DatabaseReference ingreRef = myRef.child("ingredients").child(ingredientList.get(i));
 
-            ArrayList<String> items = new ArrayList<>();
-
-
-
-            items.add(testReci.getID());
-
-
-            ingreRef.child("inRecipies").setValue(items);
-
-        }
 
 
             }
